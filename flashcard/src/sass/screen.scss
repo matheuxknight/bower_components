@@ -1,0 +1,444 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "compass/reset";
+@import "font-awesome-compass";
+@import "font-awesome";
+@import "compass/css3/border-radius";
+
+// Some more resets
+button, input, select {
+  font-family: inherit;
+}
+
+// Globals
+html, body {
+  background: #e6e6e6;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    color: #6450cb;
+  }
+}
+
+// Variables and mixins
+$break-small: 780px;
+$break-large: 9999px; // not supported (yet?)
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+  @else if $media == planescape-tablets {
+    @media only screen and (min-width: $break-small + 1) and (max-height: 800px) { @content; }
+  }
+}
+
+#FlashcardContainer {
+  font-family: 'Nunito', sans-serif;
+
+  // Main parts layout
+  max-width: 1000px;
+  display: block;
+  position: absolute;
+  height: auto;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 50px auto;
+
+  @include respond-to(handhelds) {
+    margin: 0;
+  }
+
+  @include respond-to(planescape-tablets) {
+    margin: 10px auto -50px;
+  }
+
+  > header {
+    height: 80px;
+    width: 100%;
+
+    @include respond-to(handhelds) {
+      padding: 14px 10px 0;
+      box-sizing: border-box;
+    }
+  }
+
+  > section {
+    display: block;
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 80px;
+    margin-bottom: 150px;
+//    background: #fff;
+
+    @include respond-to(handhelds) {
+      margin-bottom: 110px;
+      border-top: 2px solid #ddd;
+    }
+
+    @include respond-to(planescape-tablets) {
+      margin-top: 65px;
+    }
+  }
+
+  > footer {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+
+    @include respond-to(handhelds) {
+      height: 110px;
+      background: #e6e6e6;
+      padding: 0 10px;
+    }
+  }
+
+  // Header elements styles
+  >header {
+    button {
+      font-size: 16px;
+      width: 193px;
+      height: 53px;
+      line-height: 45px;
+      border: 3px solid;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 2px;
+      float: right;
+      padding: 0;
+      cursor: pointer;
+
+      @include respond-to(handhelds) {
+        width: auto;
+        padding: 0 20px;
+      }
+
+      i {
+        font-size: 1.2em;
+      }
+
+      &[data-role="attempt-cancel"] {
+        border-color: #f24444;
+        color: #f24444;
+        background: transparent;
+        margin-right: 25px;
+
+        @include respond-to(handhelds) {
+          font-size: 0;
+          line-height: 58px;
+          margin-right: 5px;
+          padding-right: 17px;
+
+          i {
+            font-size: 19.2px;
+          }
+        }
+      }
+
+      &[data-role="attempt-to-summary"] {
+        border-color: #67b528;
+        color: #fff;
+        background: #67b528;
+      }
+    }
+  }
+
+  // Main area styles
+  .main-part {
+    overflow: hidden;
+
+    [data-role="cards-container"] {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    [data-role="cards-holder"] {
+      width: 90000%; // Enough for 900 pages of cards.
+      position: relative;
+      float: left;
+      text-align: left;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    [data-role="card-container"] {
+      float: left;
+      clear: none;
+      box-sizing: border-box;
+      overflow: auto;
+//      padding: 55px;
+      height: 100%;
+      position: relative;
+      perspective: 800px;
+
+      @include respond-to(handhelds) {
+        padding: 15px;
+      }
+    }
+
+    [data-role="card"] {
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      background: #fff;
+
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      transform-origin: right center;
+
+      -webkit-transform-style: preserve-3d;
+      -webkit-transition: transform 1s;
+      -webkit-transform-origin: right center;
+
+      -moz-transform-style: preserve-3d;
+      -moz-transition: transform 1s;
+      -moz-transform-origin: right center;
+
+      -ms-transform-style: preserve-3d;
+      -ms-transition: transform 1s;
+      -ms-transform-origin: right center;
+
+      > div { // .card-front or .card-back
+        display: table;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+
+        &, & * {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          -moz-backface-visibility: hidden;
+          -ms-backface-visibility: hidden;
+        }
+
+        &[data-role="card-front"] {
+        }
+        &[data-role="card-back"] {
+          transform: rotateY( 180deg );
+          -webkit-transform: rotateY( 180deg );
+          -moz-transform: rotateY( 180deg );
+          -ms-transform: rotateY( 180deg );
+        }
+
+        text-align: center;
+
+        .content-wrapper {
+          display: table-cell;
+          vertical-align: middle;
+          &:after {
+            white-space: pre;
+            content: " \A \A Click to flip ";
+          }
+        }
+      }
+
+      &.flipped {
+        transform: translateX( -100% ) rotateY( -180deg );
+        -webkit-transform: translateX( -100% ) rotateY( -180deg );
+        -moz-transform: translateX( -100% ) rotateY( -180deg );
+        -ms-transform: translateX( -100% ) rotateY( -180deg );
+        
+        [data-role="card-front"] {
+          display: none;
+        }
+      }
+    }
+
+    // Typography
+    font-size: 16px;
+    line-height: 29px;
+    color: #000;
+    font-weight: 300;
+
+    h1 {
+      color: #6450cb;
+      font-size: 32px;
+      margin: 0 0 15px 0;
+
+      @include respond-to(handhelds) {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+    }
+    h2 {
+
+    }
+    h3 {
+      color: #6450cb;
+      font-size: 32px;
+
+      @include respond-to(handhelds) {
+        font-size: 16px;
+        margin-bottom: -25px; // todo change to adequate value if br's changed into p's
+      }
+    }
+    p {
+
+    }
+    li {
+
+    }
+  }
+
+  // Footer styles
+  > footer {
+    nav {
+      margin-top: 20px;
+      position: relative;
+      height: 80px;
+      text-align: center;
+
+      .disabled {
+        display: none;
+      }
+    }
+
+    [data-role="navigation-previous"] {
+      position: absolute;
+      left:0;
+      font-size: 42px;
+      color: #6450cb;
+    }
+    [data-role="navigation-next"] {
+      position: absolute;
+      right:0;
+      font-size: 42px;
+      color: #6450cb;
+    }
+
+    .quick-navigation-wrapper {
+      display: block;
+      position: absolute;
+      height: auto;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 50px;
+      overflow: hidden;
+
+      .indicator {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin: 0 0 0 -21px;
+        width: 42px;
+        height: 42px;
+        @include border-radius(50%);
+        border: 2px solid #a1a1a1;
+        box-sizing: border-box;
+      }
+    }
+
+    [data-role="quick-navigation"] {
+      position: relative;
+      margin-left: 50%;
+      width: 9000%;
+      font-size: 18px;
+
+      li {
+        display: inline-block;
+        float: left;
+        width: 42px;
+        height: 42px;
+        margin: 0 18px 0 0;
+        text-align: center;
+        line-height: 42px;
+        cursor: pointer;
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: #6450cb;
+
+          &.answered {
+            color: #898989;
+          }
+          &.current {
+            color: #000;
+          }
+        }
+      }
+    }
+
+    [data-role="full-navigation-button"] {
+      position: relative;
+      z-index: 5;
+      margin-top: 50px;
+      display: inline-block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: underline;
+    }
+
+    [data-role="full-navigation-holder"] {
+      position: absolute;
+      bottom: 85px;
+      left: 50%;
+    }
+
+    [data-role="full-navigation"] {
+      position: relative;
+      left: -50%;
+      max-width: 616px;
+
+      li {
+        float: left;
+        clear: none;
+        width: 39px;
+        height: 44px;
+        border: 1px solid #dddddd;
+        text-align: center;
+        background: #fff;
+      }
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding-top: 5px;
+        color: #000;
+
+//        &:after {
+//          content: "\A\f00d";
+//          font-family: FontAwesome;
+//          color: #f24444;
+//          white-space:pre;
+//        }
+//
+//        &.answered:after {
+//          content: "\A\f00c";
+//          font-family: FontAwesome;
+//          color: #67b528;
+//          white-space:pre;
+//        }
+      }
+    }
+  }
+}

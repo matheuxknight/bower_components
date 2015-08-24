@@ -1,0 +1,27 @@
+<article data-role="question">
+    <header>
+        <h3><%= questionModel.get('name') %></h3>
+
+        <%= questionModel.get('intro') %>
+    </header>
+
+    <div data-role="question-reply">
+        <div data-role="input-container">
+            <div class="input-group col-sm-12">
+                <input type="text" class="form-control" data-type="text-input"/>
+                <div class="diacritic-box input-group-addon" data-role="di-open-holder">
+                    <button type="button" class="btn btn-primary" data-role="di-pre-opener">Diacritics</button>
+                </div>
+                <div class="diacritic-box input-group-addon" data-role="di-letter-choice" data-disabled="true">
+                    <button type="button" class="btn btn-primary" data-role="di-opener" data-linker="lower">Lower Case</button>
+                </div>
+                <div class="diacritic-box input-group-addon" data-role="di-letter-choice" data-disabled="true">
+                    <button type="button" class="btn btn-primary" data-role="di-opener" data-linker="upper">Upper Case</button>
+                </div>
+                <div class="diacritic-box input-group-addon" data-role="di-letter-choice" data-disabled="true">
+                    <button type="button" class="btn btn-primary" data-role="di-opener" data-linker="symbol">Symbols</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</article>

@@ -1,0 +1,573 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+@import "compass/reset";
+@import "font-awesome-compass";
+@import "font-awesome";
+@import "compass/css3/border-radius";
+
+// Some more resets
+button, input, select {
+  font-family: inherit;
+}
+
+// Globals
+html, body {
+  background: #e6e6e6;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+    color: #6450cb;
+  }
+}
+
+// Variables and mixins
+$break-small: 780px;
+$break-large: 9999px; // not supported (yet?)
+@mixin respond-to($media) {
+  @if $media == handhelds {
+    @media only screen and (max-width: $break-small) { @content; }
+  }
+  @else if $media == medium-screens {
+    @media only screen and (min-width: $break-small + 1) and (max-width: $break-large - 1) { @content; }
+  }
+  @else if $media == wide-screens {
+    @media only screen and (min-width: $break-large) { @content; }
+  }
+  @else if $media == planescape-tablets {
+    @media only screen and (min-width: $break-small + 1) and (max-height: 800px) { @content; }
+  }
+}
+
+#SurveyContainer {
+  font-family: 'Nunito', sans-serif;
+
+  // Main parts layout
+  max-width: 1000px;
+  display: block;
+  position: absolute;
+  height: auto;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 50px auto;
+
+  @include respond-to(handhelds) {
+    margin: 0;
+  }
+
+  @include respond-to(planescape-tablets) {
+    margin: 10px auto -50px;
+  }
+
+  > header {
+    height: 80px;
+    width: 100%;
+
+    @include respond-to(handhelds) {
+      padding: 14px 10px 0;
+      box-sizing: border-box;
+    }
+  }
+
+  > section {
+    display: block;
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin-top: 80px;
+    margin-bottom: 150px;
+    background: #fff;
+
+    @include respond-to(handhelds) {
+      margin-bottom: 110px;
+      border-top: 2px solid #ddd;
+    }
+
+    @include respond-to(planescape-tablets) {
+      margin-top: 65px;
+    }
+  }
+
+  > footer {
+    width: 100%;
+    height: 150px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    box-sizing: border-box;
+
+    @include respond-to(handhelds) {
+      height: 110px;
+      background: #e6e6e6;
+      padding: 0 10px;
+    }
+  }
+
+  // Header elements styles
+  >header {
+    button {
+      font-size: 16px;
+      width: 193px;
+      height: 53px;
+      line-height: 45px;
+      border: 3px solid;
+      box-sizing: border-box;
+      text-transform: uppercase;
+      text-align: center;
+      letter-spacing: 2px;
+      float: right;
+      padding: 0;
+      cursor: pointer;
+
+      @include respond-to(handhelds) {
+        width: auto;
+        padding: 0 20px;
+      }
+
+      i {
+        font-size: 1.2em;
+      }
+
+      &[data-role="attempt-cancel"] {
+        border-color: #f24444;
+        color: #f24444;
+        background: transparent;
+        margin-right: 25px;
+
+        @include respond-to(handhelds) {
+          font-size: 0;
+          line-height: 58px;
+          margin-right: 5px;
+          padding-right: 17px;
+
+          i {
+            font-size: 19.2px;
+          }
+        }
+      }
+
+      &[data-role="attempt-submit"] {
+        border-color: #67b528;
+        color: #fff;
+        background: #67b528;
+      }
+    }
+
+    .timer-wrapper {
+      font-weight: bold;
+      font-size: 20px;
+      float: left;
+
+      @include respond-to(handhelds) {
+        margin-top: 10px;
+      }
+
+      i {
+        font-size: 1.5em;
+      }
+      span {
+        vertical-align: text-top;
+      }
+    }
+  }
+
+  // Main area styles
+  .main-part {
+    overflow: hidden;
+
+    [data-role="questions-container"] {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    [data-role="questions-holder"] {
+      width: 90000%; // Enough for 900 pages of questions.
+      position: relative;
+      float: left;
+      text-align: left;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+
+    [data-role="question"],
+    [data-role="intro"],
+    [data-role="outro"] {
+      float: left;
+      clear: none;
+      box-sizing: border-box;
+      overflow: auto;
+      padding: 55px;
+      height: 100%;
+
+      @include respond-to(handhelds) {
+        padding: 15px;
+      }
+    }
+
+    [data-role="intro"] {
+      text-align: center;
+      width: 100%;
+
+      dl {
+        margin: 20px 0;
+      }
+      dt {
+        font-size: 14px;
+        text-transform: uppercase;
+        display: block;
+        color: #a3a3a3;
+        margin: 10px 0 0 0;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+      dd {
+        font-size: 24px;
+        display: block;
+      }
+
+      button {
+        font-size: 16px;
+        width: 193px;
+        height: 53px;
+        line-height: 45px;
+        border: 3px solid;
+        box-sizing: border-box;
+        text-transform: uppercase;
+        text-align: center;
+        letter-spacing: 2px;
+        padding: 0;
+        margin: 5px 15px;
+        cursor: pointer;
+
+        i {
+          font-size: 1.2em;
+        }
+
+        &[data-role="attempt-cancel"] {
+          border-color: #f24444;
+          color: #f24444;
+          background: transparent;
+        }
+
+        &[data-role="attempt-continue"],
+        &[data-role="attempt-start"] {
+          border-color: #67b528;
+          color: #fff;
+          background: #67b528;
+        }
+      }
+    }
+
+    // Typography
+    font-size: 16px;
+    line-height: 29px;
+    color: #000;
+    font-weight: 300;
+
+    h1 {
+      color: #6450cb;
+      font-size: 32px;
+      margin: 0 0 15px 0;
+
+      @include respond-to(handhelds) {
+        font-size: 16px;
+        margin-bottom: 5px;
+      }
+    }
+    h2 {
+
+    }
+    h3 {
+      color: #6450cb;
+      font-size: 32px;
+
+      @include respond-to(handhelds) {
+        font-size: 16px;
+        margin-bottom: -25px; // todo change to adequate value if br's changed into p's
+      }
+    }
+    p {
+
+    }
+    li {
+
+    }
+
+    [data-role="question-reply"] {
+      margin-top: 15px;
+      position: relative;
+    }
+
+    // Inputs
+    input[type="text"],
+    select {
+      border: 2px solid #e2e2e2;
+      padding: 7px 15px;
+      font-size: 16px;
+    }
+    // Radio
+    input[type="radio"] {
+//      display: inline-block;
+//      width: 25px;
+//      height: 25px;
+//      box-sizing: border-box;
+//      @include border-radius(50%);
+//      border: 2px solid #dbdbdb;
+//      background: #fff;
+//
+//      &:checked {
+//        border-color: #6450cb;
+//        background: #6450cb;
+//        color: #fff;
+//      }
+    }
+    label {
+      margin: 3px 0 0 5px;
+      font-weight: 400;
+      cursor: pointer;
+    }
+    // WYSIWYG
+    .wysiwyg-content {
+      em {
+        font-style: italic;
+      }
+      strong {
+        font-weight: bold;
+      }
+    }
+    // Rank
+    [data-type="rank"] {
+      [data-role="rank-option"],
+      .placeholder {
+        padding: 5px 10px;
+        border: 2px solid #e2e2e2;
+        margin: 5px auto;
+        display: inline-block;
+        float: left;
+        clear: both;
+        cursor: pointer;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 600px;
+        text-align: center;
+        background: #fff;
+
+        &.active {
+          background: #00cc66;
+          color: #fff;
+        }
+      }
+
+      .placeholder {
+        border-style: dashed;
+        height: 29px;
+      }
+    }
+
+    // Diacritics
+    [data-role="diacritics-container"] {
+      position: absolute;
+      left: 55px;
+      top: 0;
+      display: none;
+      width: 585px;
+      background: #e1e1e1;
+      padding: 0 0 0 1px; // 1px because we don't add left border to buttons
+
+      ul {
+        display: block;
+        float: left;
+        margin: 10px;
+        padding: 0;
+      }
+      ul li {
+        float: left;
+        margin: 0 4px;
+      }
+      ul a {
+        display: block;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        width: 180px;
+        background: #fff;
+        letter-spacing: 2px;
+        padding: 0;
+      }
+      ul .ui-tabs-active a {
+        background: #6450cb;
+        color: #fff;
+      }
+      .ui-tabs-panel {
+        padding: 0;
+        margin: 0;
+        float: left;
+        width: 100%;
+      }
+      button {
+        float: left;
+        clear: none;
+        width: 39px;
+        height: 34px;
+        line-height: 37px;
+        padding: 0;
+        margin: 0;
+        border: 0;
+        border-right: 1px solid #dddddd;
+        border-bottom: 1px solid #dddddd;
+        background: #fff;
+        text-align: center;
+      }
+    }
+  }
+
+  // Footer styles
+  > footer {
+    nav {
+      margin-top: 20px;
+      position: relative;
+      height: 80px;
+      text-align: center;
+
+      .disabled {
+        display: none;
+      }
+    }
+
+    [data-role="navigation-previous"] {
+      position: absolute;
+      left:0;
+      font-size: 42px;
+      color: #6450cb;
+    }
+    [data-role="navigation-next"] {
+      position: absolute;
+      right:0;
+      font-size: 42px;
+      color: #6450cb;
+    }
+
+    .quick-navigation-wrapper {
+      display: block;
+      position: absolute;
+      height: auto;
+      bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0 50px;
+      overflow: hidden;
+
+      .indicator {
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin: 0 0 0 -21px;
+        width: 42px;
+        height: 42px;
+        @include border-radius(50%);
+        border: 2px solid #a1a1a1;
+        box-sizing: border-box;
+      }
+    }
+
+    [data-role="quick-navigation"] {
+      position: relative;
+      margin-left: 50%;
+      width: 9000%;
+      font-size: 18px;
+
+      li {
+        display: inline-block;
+        float: left;
+        width: 42px;
+        height: 42px;
+        margin: 0 18px 0 0;
+        text-align: center;
+        line-height: 42px;
+        cursor: pointer;
+
+        a {
+          display: block;
+          width: 100%;
+          height: 100%;
+          color: #6450cb;
+
+          &.answered {
+            color: #898989;
+          }
+          &.current {
+            color: #000;
+          }
+        }
+      }
+    }
+
+    [data-role="full-navigation-button"] {
+      position: relative;
+      z-index: 5;
+      margin-top: 50px;
+      display: inline-block;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-decoration: underline;
+    }
+
+    [data-role="full-navigation-holder"] {
+      position: absolute;
+      bottom: 85px;
+      left: 50%;
+    }
+
+    [data-role="full-navigation"] {
+      position: relative;
+      left: -50%;
+      max-width: 616px;
+
+      li {
+        float: left;
+        clear: none;
+        width: 39px;
+        height: 44px;
+        border: 1px solid #dddddd;
+        text-align: center;
+        background: #fff;
+      }
+      a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        padding-top: 5px;
+        color: #000;
+
+        &:after {
+          content: "\A\f00d";
+          font-family: FontAwesome;
+          color: #f24444;
+          white-space:pre;
+        }
+
+        &.answered:after {
+          content: "\A\f00c";
+          font-family: FontAwesome;
+          color: #67b528;
+          white-space:pre;
+        }
+      }
+    }
+  }
+}

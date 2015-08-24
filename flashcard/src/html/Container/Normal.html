@@ -1,0 +1,38 @@
+<header class='flashcard-topper'>
+    <span class='header-right'>
+        <button data-role="attempt-cancel"><i class="fa fa-times"></i> Cancel</button>
+    </span>
+</header>
+
+<section class="main-part">
+    <div data-role="cards-container">
+        <div data-role="cards-holder"></div>
+    </div>
+</section>
+
+<footer>
+    <nav>
+        <a href="#" data-role="navigation-previous"><i class="fa fa-long-arrow-left"></i></a>
+
+        <div class="quick-navigation-wrapper">
+            <i class="indicator"></i>
+            <ul data-role="quick-navigation">
+                <% for (i = 0; i < _flashcardModel.get('flashcards').length; i++) { %>
+                <li><a data-role="navigation-number" data-card-index="<%= i %>" href="#"><%= i + 1 %></a></li>
+                <% } %>
+            </ul>
+        </div>
+
+        <a href="#" data-role="navigation-next"><i class="fa fa-long-arrow-right"></i></a>
+
+        <a data-role="full-navigation-button" href="#">All cards</a>
+
+        <div data-role="full-navigation-holder" style="display: none;">
+            <ul data-role="full-navigation">
+                <% for (i = 0; i < _flashcardModel.get('flashcards').length; i++) { %>
+                <li><a data-role="navigation-number" data-card-index="<%= i %>" href="#"><%= i + 1 %></a></li>
+                <% } %>
+            </ul>
+        </div>
+    </nav>
+</footer>

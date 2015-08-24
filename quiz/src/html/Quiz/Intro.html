@@ -1,0 +1,39 @@
+<header></header>
+
+<section class="main-part">
+    <article data-role="intro">
+        <h1><%= _quizModel.get('quizname') %></h1>
+
+        <dl>
+            <dt>Number of Questions</dt>
+            <dd><%= _quizModel.get('questioncount') %></dd>
+
+            <dt>Pass Threshold</dt>
+            <dd><%= _quizModel.get('passthreshold') %>%</dd>
+
+            <dt>Penalties Applied</dt>
+            <dd><%= _quizModel.get('applypenalties') == "0" ? 'No' : 'Yes' %></dd>
+
+            <dt>Time Limit</dt>
+            <dd><%= _quizModel.get('timelimit') == "0" ? "Unlimited" : Math.floor(_quizModel.get('timelimit') / 60) + " min" %></dd>
+
+            <dt>Your Attempts</dt>
+            <dd><%= _quizModel.get('attemptcount') %> <%= _quizModel.get('allowedattempt') !== "0" ? "/ " + _quizModel.get('allowedattempt') : '' %></dd>
+
+            <% if (_quizModel.get('attemptid') > 0) { %>
+            <dt>Current attempt duration</dt>
+            <dd><%= Math.floor((new Date().getTime() / 1000 - _quizModel.get('starttime')) / 60) %> min</dd>
+            <% } %>
+        </dl>
+
+        <% if (_quizModel.get('attemptid') > 0) { %>
+        <button type="button" data-role="attempt-continue">Continue!</button>
+        <button type="button" data-role="attempt-cancel">Cancel attempt</button>
+        <% } else { %>
+        <p>You are about to start this quiz. Press the start button <br/> below when you are ready.</p>
+        <button type="button" data-role="attempt-start">Start!</button>
+        <% } %>
+    </article>
+</section>
+
+<footer></footer>

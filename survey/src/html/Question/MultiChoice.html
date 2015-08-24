@@ -1,0 +1,22 @@
+<article data-role="question">
+    <header>
+        <h3><%= questionModel.get('name') %></h3>
+
+        <%= questionModel.get('intro') %>
+    </header>
+
+    <div data-role="question-reply">
+        <% _.each(questionModel.get('options'), function(option){ %>
+        <div class="form-group">
+            <label for="MultiChoice_<%= questionModel.get('id') %>_<%= option.id %>">
+                <input type="<%= questionModel.get('allowmultiple') == '1' ? 'checkbox' : 'radio' %>"
+                       name="MultiChoice_<%= questionModel.get('id') %>"
+                       id="MultiChoice_<%= questionModel.get('id') %>_<%= option.id %>"
+                       value="<%= option.id %>"
+                       <%= answerModel.get('answerselect').indexOf(option.id) > -1 ? 'checked' : '' %> />
+                <span><%= option.value %></span>
+            </label>
+        </div>
+        <% }); %>
+    </div>
+</article>

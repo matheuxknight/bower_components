@@ -1,0 +1,107 @@
+.froala-editor .fr-dropdown.fr-diacritic-picker i {
+    padding-left: 3px;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu {
+    padding: 0;
+    line-height: 0px;
+    white-space: nowrap;
+    text-align: left;
+    direction: ltr !important;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu > div {
+    white-space: nowrap;
+    display: inline-block;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1;
+    color: #444444;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p span {
+    float: left;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p span.fr-choose-diacritic {
+    padding: 5px 10px;
+    text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-top: solid 4px transparent;
+    border-bottom: solid 4px transparent;
+    cursor: pointer;
+    width: 100%;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p span.fr-choose-diacritic.fr-50 {
+    width: 50%;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p span.fr-choose-diacritic.active,
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p span.fr-choose-diacritic:hover {
+    border-bottom: solid 4px #2c82c9;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p a.fr-bttn {
+    display: inline-block;
+    float: right;
+    padding: 0;
+    color: #444444;
+    -webkit-transition: color linear 0.1s;
+    -moz-transition: color linear 0.1s;
+    -ms-transition: color linear 0.1s;
+    -o-transition: color linear 0.1s;
+    cursor: pointer;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p a.fr-bttn:hover {
+    color: #2c82c9;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu p:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu .fr-diacritic-bttn {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    position: relative;
+    z-index: 100;
+    line-height: 16px !important;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: #fff;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu .fr-diacritic-bttn.active {
+    border: 0;
+    outline: solid 1px #252525;
+    z-index: 101;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu .fr-diacritic-bttn.active:after {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    text-align: center;
+    top: 0px;
+    bottom: 0;
+    line-height: 30px;
+    content: "\f00c";
+    font-family: 'FontAwesome';
+    font-weight: normal;
+    font-size: 12px;
+    color: #ffffff;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu .fr-diacritic-bttn i {
+    font-size: 13px;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu .separator {
+    height: 8px;
+}
+.froala-editor .fr-dropdown.fr-diacritic-picker .fr-dropdown-menu .fr-diacritic-bttn:hover:not(:focus):not(:active) {
+    outline: solid 1px #252525;
+    z-index: 300;
+}

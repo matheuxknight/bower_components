@@ -1,0 +1,13 @@
+<article data-role="outro" style="float: left; clear: none;">
+    <div data-role="unanswered-container">
+
+    </div>
+
+    <% if (_quizModel.get('timelimit') !== "0") { %>
+    <p>
+        <!--Time left: <span data-role="timer"></span>-->
+    </p>
+    <% } %>
+
+    <button data-role="attempt-submit"><i class="fa fa-check"></i> Submit quiz to teacher</button>
+</article>
